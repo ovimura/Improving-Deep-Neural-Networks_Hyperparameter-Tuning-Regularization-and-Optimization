@@ -697,7 +697,7 @@ forward_propagation_test(forward_propagation, new_train)
 # 
 # - `tf.reduce_mean` basically does the summation over the examples.
 
-# In[61]:
+# In[69]:
 
 
 # GRADED FUNCTION: compute_cost 
@@ -717,7 +717,6 @@ def compute_cost(logits, labels):
     #(1 line of code)
     # cost = ...
     # YOUR CODE STARTS HERE
-    # cost = tf.reduce_mean(tf.keras.losses.categorical_crossentropy(logits,labels))
     logits = tf.transpose(logits)
     labels = tf.reshape(tf.transpose(labels),[logits.shape[0],6])
     cost =  tf.reduce_mean(tf.keras.losses.categorical_crossentropy(labels, logits,from_logits=True))
@@ -726,7 +725,7 @@ def compute_cost(logits, labels):
     return cost
 
 
-# In[62]:
+# In[70]:
 
 
 def compute_cost_test(target, Y):
@@ -769,7 +768,7 @@ compute_cost_test(compute_cost, new_y_train )
 # 
 # What this does is prevent a memory bottleneck that can occur when reading from disk. `prefetch()` sets aside some data and keeps it ready for when it's needed. It does this by creating a source dataset from your input data, applying a transformation to preprocess the data, then iterating over the dataset the specified number of elements at a time. This works because the iteration is streaming, so the data doesn't need to fit into the memory. 
 
-# In[63]:
+# In[71]:
 
 
 def model(X_train, Y_train, X_test, Y_test, learning_rate = 0.0001,
